@@ -13,6 +13,20 @@ const userModel = {
         })
     },
 
+    //pagination user by 3 data each page
+    findUserPaged: (page) => {
+        return new Promise((resolve, reject) => {
+            const limit = 3;
+            const offset = (page - 1) * limit;
+            db.query(`select * from users order by name limit ${limit} offset ${offset}`, (err, res) => {
+                if(err){
+                    reject(err);
+                }
+                resolve(res);
+            })
+        })
+    },
+
     //find user by email
     findUser: (email) => {
         return new Promise((resolve, reject) => {

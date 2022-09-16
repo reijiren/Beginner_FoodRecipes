@@ -12,6 +12,17 @@ const userController = {
             res.json(err);
         });
     },
+    listPaged: (req, res) => {
+        const page = req.params.page;
+
+        userModel.findUserPaged(page)
+        .then((result) => {
+            res.json(result.rows);
+        })
+        .catch((err) => {
+            res.json(err);
+        });
+    },
     detail: (req, res) => {
         const email = req.params.email;
 

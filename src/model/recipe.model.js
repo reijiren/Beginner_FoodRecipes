@@ -13,6 +13,36 @@ const recipeModel = {
         })
     },
 
+    //pagination recipes by 4 data each page
+    findRecipesPaged: (page) => {
+        return new Promise((resolve, reject) => {
+            const limit = 4;
+            const offset = (page - 1) * limit;
+
+            db.query(`select * from recipes order by title limit ${limit} offset ${offset}`, (err, res) => {
+                if(err){
+                    reject(err);
+                }
+                resolve(res);
+            })
+        })
+    },
+
+    //show recipe comments with pagination
+    allRecipeComment: (id, page) => {
+        return new Promise((resolve, reject) => {
+            const limit = 2;
+            const offset = (page - 1) * limit;
+
+            db.query(`select * from comment where id_food=${id} limit ${limit} offset ${offset}`, (err, res) => {
+                if(err){
+                    reject(err);
+                }
+                resolve(res);
+            })
+        })
+    },
+
     //find recipe by title
     findRecipe: (title) => {
         return new Promise((resolve, reject) => {

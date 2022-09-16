@@ -12,6 +12,29 @@ const recipeController = {
             res.json(err);
         });
     },
+    listPaged: (req, res) => {
+        const page = req.params.page;
+
+        recipeModel.findRecipesPaged(page)
+        .then((result) => {
+            res.json(result.rows);
+        })
+        .catch((err) => {
+            res.json(err);
+        });
+    },
+    listComment: (req, res) => {
+        const page = req.params.page;
+        const { id } = req.body;
+        
+        recipeModel.allRecipeComment(id, page)
+        .then((result) => {
+            res.json(result.rows);
+        })
+        .catch((err) => {
+            res.json(err);
+        });
+    },
     detail: (req, res) => {
         const title = req.params.title;
 
