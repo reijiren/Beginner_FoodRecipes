@@ -7,7 +7,7 @@ const router = express.Router();
 router
 .get("/recipe", list)
 .get("/recipe/:page", listPaged)
-.get("/recipe/:title", detail)
+.get("/recipe/detail/:title", detail)
 .get("/recipe/comment/:page", listComment)
 .post("/recipe", insert)
 .put("/recipe", update)

@@ -7,7 +7,7 @@ const router = express.Router();
 router
 .get("/user", list)
 .get("/user/:page", listPaged)
-.get("/user/:email", detail)
+.get("/user/detail/:email", detail)
 .post("/user", insert)
 .put("/user", update)
 .delete("/user/:email", destroy);
